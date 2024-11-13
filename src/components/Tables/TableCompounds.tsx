@@ -3,6 +3,7 @@ import Image from "next/image";
 
 const brandData: COMPOUND_PREWIEW[] = [
   {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -11,6 +12,7 @@ const brandData: COMPOUND_PREWIEW[] = [
     articles: 6,
   },
   {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -19,6 +21,7 @@ const brandData: COMPOUND_PREWIEW[] = [
     articles: 6,
   },
   {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -27,6 +30,7 @@ const brandData: COMPOUND_PREWIEW[] = [
     articles: 6,
   },
   {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -35,6 +39,52 @@ const brandData: COMPOUND_PREWIEW[] = [
     articles: 6,
   },
   {
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },
+  {
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },
+  {
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },
+  {
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },
+  {
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },
+  {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -42,22 +92,7 @@ const brandData: COMPOUND_PREWIEW[] = [
     calculations: 590,
     articles: 6,
   },{
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -65,14 +100,23 @@ const brandData: COMPOUND_PREWIEW[] = [
     calculations: 590,
     articles: 6,
   },{
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
     experiments: 5,
     calculations: 590,
     articles: 6,
-  },
-  {
+  },{
+    id:1,
+    preview: "/images/preview/hexane.png",
+    name: "Hexane",
+    linked: 3,
+    experiments: 5,
+    calculations: 590,
+    articles: 6,
+  },{
+    id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
     linked: 3,
@@ -159,7 +203,7 @@ const TableCompoundsList = () => {
               <p className="text-meta-5">{brand.articles}</p>
             </div>
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-meta-5">Страница вещества</p>
+              <a href={"compounds/" + brand.id} className="text-meta-5">Страница вещества</a>
             </div>
             
 

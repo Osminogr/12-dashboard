@@ -31,8 +31,8 @@ const CompoundCard: React.FC = () => {
     <div className="col-span-12 border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8 min-h-fit max-w-full">
         
         <CompoundCardPart title='Изображения'>
-        {card_data.images?.map((ext_link) => (
-                <CompoundImage title={ext_link.name} link={ext_link.link}></CompoundImage>
+        {card_data.images?.map((ext_link,key) => (
+                <CompoundImage key={key} title={ext_link.name} link={ext_link.link}></CompoundImage>
             ))}
         </CompoundCardPart>
         
@@ -41,8 +41,8 @@ const CompoundCard: React.FC = () => {
         </CompoundCardPart>
 
         <CompoundCardPart title='Внешние источники'>
-            {card_data.external_links?.map((ext_link) => (
-                <CompoundExternalLink title={ext_link.name} link={ext_link.link}></CompoundExternalLink>
+            {card_data.external_links?.map((ext_link,key) => (
+                <CompoundExternalLink key={key} title={ext_link.name} link={ext_link.link}></CompoundExternalLink>
             ))}
         </CompoundCardPart>
 

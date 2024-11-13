@@ -1,4 +1,4 @@
-import { COMPOUND_PREWIEW } from "@/types/brand";
+import { COMPOUND_PREWIEW } from "@/types/compound_prewiew";
 import Image from "next/image";
 
 const brandData: COMPOUND_PREWIEW[] = [

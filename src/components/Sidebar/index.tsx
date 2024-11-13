@@ -15,7 +15,96 @@ interface SidebarProps {
 
 const menuGroups = [
   {
-    name: "MENU",
+    name: "Меню",
+    menuItems: [
+      {
+        icon: (
+          <svg
+            className="fill-current"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          </svg>
+        ),
+        label: "Главная",
+        route: "/",
+      },
+      {
+        icon: (
+          <svg
+            className="fill-current"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          </svg>
+        ),
+        label: "Календарь",
+        route: "/calendar",
+      },
+      {
+        icon: (
+          <svg
+            className="fill-current"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          </svg>
+        ),
+        label: "Группы",
+        route: "/groups",
+      },
+      {
+        icon: (
+          <svg
+            className="fill-current"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          </svg>
+        ),
+        label: "Проекты",
+        route: "/projects",
+      },
+      {
+        icon: (
+          <svg
+            className="fill-current"
+            width="18"
+            height="18"
+            viewBox="0 0 18 18"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+          </svg>
+        ),
+        label: "Инструменты",
+        route: "#",
+        children: [
+          { label: "База объектов", route: "/" },
+          { label: "Протоколы вычислений", route: "/" },
+          { label: "ADMET", route: "/" },
+          { label: "Docking", route: "/" },
+          { label: "ORCA",  route: "/",},
+        ],
+
+      },
+      
+    ],
+  },
+  {
+    name: "DEV MENU",
     menuItems: [
       {
         icon: (

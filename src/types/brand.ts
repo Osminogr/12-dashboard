@@ -1,8 +1,8 @@
-export type BRAND = {
-  logo: string;
-  name: string;
-  visitors: number;
-  revenues: string;
-  sales: number;
-  conversion: number;
+export type COMPOUND_PREWIEW = {
+  preview: string,
+  name: string,
+  linked: number,
+  experiments: number,
+  calculations: number,
+  articles: number,
 };

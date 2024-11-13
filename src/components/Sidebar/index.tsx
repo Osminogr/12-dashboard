@@ -77,26 +77,26 @@ const menuGroups = [
         label: "Проекты",
         route: "/projects",
       },
+      { 
+        label: "База объектов", route: "#",
+        children: [
+          
+          { label: "Вещества", route: "/compounds" },
+          { label: "Реакции", route: "/reactions" },
+          { label: "Статьи", route: "/articles" },
+          { label: "Файлы",  route: "/files",},
+        ],
+      },
       {
-        icon: (
-          <svg
-            className="fill-current"
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-          </svg>
-        ),
+        
         label: "Инструменты",
         route: "#",
         children: [
-          { label: "База объектов", route: "/" },
-          { label: "Протоколы вычислений", route: "/" },
-          { label: "ADMET", route: "/" },
-          { label: "Docking", route: "/" },
-          { label: "ORCA",  route: "/",},
+          
+          { label: "Протоколы вычислений", route: "/calc-protocols" },
+          { label: "ADMET", route: "/admet" },
+          { label: "Docking", route: "/docking" },
+          { label: "ORCA",  route: "/orca",},
         ],
 
       },

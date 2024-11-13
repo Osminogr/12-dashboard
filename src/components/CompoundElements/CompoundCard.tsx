@@ -29,7 +29,7 @@ const CompoundCard: React.FC = () => {
 
   return (
     <div className="col-span-12 border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8 min-h-fit max-w-full">
-        
+        <h2 className="py-2 dark:font-white text-title-xl text-black-2">{card_data.base_name}</h2>
         <CompoundCardPart title='Изображения'>
         {card_data.images?.map((ext_link,key) => (
                 <CompoundImage key={key} title={ext_link.name} link={ext_link.link}></CompoundImage>

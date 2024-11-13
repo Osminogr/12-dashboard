@@ -93,7 +93,7 @@ const menuGroups = [
         route: "#",
         children: [
           
-          { label: "Протоколы вычислений", route: "/calc-protocols" },
+          { label: "Протоколы вычислений", route: "/protocols" },
           { label: "ADMET", route: "/admet" },
           { label: "Docking", route: "/docking" },
           { label: "ORCA",  route: "/orca",},

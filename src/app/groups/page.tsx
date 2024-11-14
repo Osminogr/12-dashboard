@@ -1,5 +1,8 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableCompoundsList from "@/components/Tables/TableCompounds";
+import Card from "@/components/common/Card/GroupCardElement";
+
+
 
 import { Metadata } from "next";
 import Link from "next/link";
@@ -7,23 +10,29 @@ import Link from "next/link";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export const metadata: Metadata = {
-  title: "Соединения",
+  title: "Научные группы",
   description:
-    "Список веществ использующихся в лаборатории",
+    "Список научных групп",
 };
 
 const CompoundsListPage = () => {
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Соединения" />
+      <Breadcrumb pageName="Научные группы" />
       <Link
-              href="compounds/add"
+              href="groups/add"
               className="inline-flex items-center justify-center bg-green-500 rounded-full px-10 py-4 text-center font-medium text-white hover:bg-opacity-90 lg:px-8 xl:px-10 my-6"
             >
-              Добавить соединение
+              Добавить группу
             </Link>
-      <div className="flex flex-col gap-10">
-        <TableCompoundsList />
+      <div className="grid grid-cols-6 gap-10">
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        
       </div>
     </DefaultLayout>
   );

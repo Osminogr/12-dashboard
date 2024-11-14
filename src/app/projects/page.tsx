@@ -1,5 +1,8 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import TableCompoundsList from "@/components/Tables/TableCompounds";
+import Card from "@/components/common/Card/ProjectsCardElement";
+
+
 
 import { Metadata } from "next";
 import Link from "next/link";
@@ -22,8 +25,14 @@ const CompoundsListPage = () => {
             >
               Добавить соединение
             </Link>
-      <div className="flex flex-col gap-10">
-        <TableCompoundsList />
+      <div className="grid grid-cols-6 gap-10">
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        <Card></Card>
+        
       </div>
     </DefaultLayout>
   );

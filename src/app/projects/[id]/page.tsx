@@ -1,5 +1,4 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import TableCompoundsList from "@/components/Tables/TableCompounds";
 import CompoundCard from "@/components/CompoundElements/CompoundCard";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
     "Список веществ использующихся в лаборатории",
 };
 
-const CompoundsListPage = () => {
+const ProjectPage = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName="Страница соединения" />
@@ -22,4 +21,4 @@ const CompoundsListPage = () => {
   );
 };
 
-export default CompoundsListPage;
+export default ProjectPage;

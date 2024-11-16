@@ -1,8 +1,5 @@
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import TableCompoundsList from "@/components/Tables/TableCompounds";
 import Card from "@/components/common/Card/GroupCardElement";
-
-
 
 import { Metadata } from "next";
 import Link from "next/link";

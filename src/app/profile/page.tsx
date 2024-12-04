@@ -1,16 +1,19 @@
+'use client'
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import Image from "next/image";
 import { Metadata } from "next";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { getMyId } from "./utils";
+import { PERSON } from "@/types/api/person"
 
-export const metadata: Metadata = {
-  title: "Next.js Profile | TailAdmin - Next.js Dashboard Template",
-  description:
-    "This is Next.js Profile page for TailAdmin - Next.js Tailwind CSS Admin Dashboard Template",
-};
 
-const Profile = () => {
+const Profile = async () => {
+
+
+  const u = await getMyId()
+  
   return (
     <DefaultLayout>
       <div className="mx-auto max-w-242.5">
@@ -63,7 +66,7 @@ const Profile = () => {
                     />
                   </svg>
                 </span>
-                <span>Edit</span>
+                <span >Edit</span>
               </label>
             </div>
           </div>
@@ -116,7 +119,7 @@ const Profile = () => {
             </div>
             <div className="mt-4">
               <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-                Danish Heilium
+                {u.first_name} {u.last_name}
               </h3>
               <p className="font-medium">Ui/Ux Designer</p>
               <div className="mx-auto mb-5.5 mt-4.5 grid max-w-94 grid-cols-3 rounded-md border border-stroke py-2.5 shadow-1 dark:border-strokedark dark:bg-[#37404F]">

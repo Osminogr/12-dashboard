@@ -1,134 +1,41 @@
 import { COMPOUND_PREWIEW } from "@/types/compound_prewiew";
 import Image from "next/image";
 import Link from "next/link";
+import { Infer } from "garph";
+import { request, gql } from "graphql-request";
 
-const brandData: COMPOUND_PREWIEW[] = [
+
+type CompoundRow = {
+  id: number;
+  preview?: string;
+  name: string;
+  experiments: number;
+  calculations: number;
+  articles: number;
+}
+
+const compoundData: CompoundRow[] = [
   {
     id:1,
     preview: "/images/preview/hexane.png",
     name: "Hexane",
-    linked: 3,
     experiments: 5,
     calculations: 590,
     articles: 6,
   },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  {
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },{
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },{
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },{
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },{
-    id:1,
-    preview: "/images/preview/hexane.png",
-    name: "Hexane",
-    linked: 3,
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
-  },
-  
 ];
 
-const TableCompoundsList = () => {
+
+
+interface QueryData {
+  data: CompoundRow[];
+}
+
+
+
+const TableCompoundsList = async () => {
+
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 height:100%">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -140,11 +47,6 @@ const TableCompoundsList = () => {
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
               Вещество
-            </h5>
-          </div>
-          <div className="p-2.5 text-center xl:p-5">
-            <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Записи
             </h5>
           </div>
           <div className="p-2.5 text-center xl:p-5">
@@ -169,10 +71,10 @@ const TableCompoundsList = () => {
           </div>
         </div>
 
-        {brandData.map((brand, key) => (
+        {compoundData.map((compound, key) => (
           <div
             className={`grid grid-cols-3 sm:grid-cols-6 ${
-              key === brandData.length - 1
+              key === compoundData.length - 1
                 ? ""
                 : "border-b border-stroke dark:border-strokedark"
             }`}
@@ -181,30 +83,27 @@ const TableCompoundsList = () => {
             <div className="flex items-center gap-3 p-2.5 xl:p-5">
             
               <div className="flex-shrink-0">
-                <Image src={brand.preview} alt="Brand" width={48} height={48} />
+                {/* <Image alt="compound" width={48} height={48} /> */}
               </div>
               <p className="hidden text-black dark:text-white sm:block">
-                {brand.name}
+                {compound.name}
               </p>
             </div>
 
-            <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-black dark:text-white">{brand.linked}</p>
-            </div>
 
             <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-meta-3">{brand.experiments}</p>
+              <p className="text-meta-3">{compound.experiments}</p>
             </div>
 
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-black dark:text-white">{brand.calculations}</p>
+              <p className="text-black dark:text-white">{compound.calculations}</p>
             </div>
 
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-meta-5">{brand.articles}</p>
+              <p className="text-meta-5">{compound.articles}</p>
             </div>
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <a href={"compounds/" + brand.id} className="text-meta-5">Страница вещества</a>
+              <a href={"compounds/" + compound.id} className="text-meta-5">Страница вещества</a>
             </div>
             
 

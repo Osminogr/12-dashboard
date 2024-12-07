@@ -1,8 +1,7 @@
 import { COMPOUND_PREWIEW } from "@/types/compound_prewiew";
 import Image from "next/image";
 import Link from "next/link";
-import { Infer } from "garph";
-import { request, gql } from "graphql-request";
+
 
 
 type CompoundRow = {
@@ -103,7 +102,7 @@ const TableCompoundsList = async () => {
               <p className="text-meta-5">{compound.articles}</p>
             </div>
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <a href={"compounds/" + compound.id} className="text-meta-5">Страница вещества</a>
+              <Link href={"compounds/" + compound.id} className="text-meta-5">Страница вещества</Link>
             </div>
             
 

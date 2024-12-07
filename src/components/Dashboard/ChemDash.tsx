@@ -6,6 +6,10 @@ import ChartTwo from "../Charts/ChartTwo";
 import ChatCard from "../Chat/ChatCard";
 import TableOne from "../Tables/TableOne";
 import CardDataStats from "../CardDataStats";
+import { IAuthState, authSlice } from "@/store/authSlice"
+
+
+import { useAppDispatch, useAppSelector } from "@/store/store";
 
 const MapOne = dynamic(() => import("@/components/Maps/MapOne"), {
   ssr: false,
@@ -15,7 +19,19 @@ const ChartThree = dynamic(() => import("@/components/Charts/ChartThree"), {
   ssr: false,
 });
 
+export type GlobalSettingsProps = {
+  p_global_settings: IAuthState;
+}
+
 const ChemDash: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const state_auth = useAppSelector(state => state.auth)
+  
+  let statist = "Не в сети"
+  if (state_auth.authState) {
+    statist = "В сети"
+  }
+  console.log(state_auth.authState)
   return (
     <>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
@@ -32,7 +48,7 @@ const ChemDash: React.FC = () => {
         <svg width="800px" height="800px" viewBox="0 0 24 24" data-name="025_SCIENCE" id="_025_SCIENCE" xmlns="http://www.w3.org/2000/svg"><defs><style></style></defs><path className="cls-1" d="M20,22H5a1,1,0,0,1-1-1V3A1,1,0,0,1,5,2H20a1,1,0,0,1,1,1V18a1,1,0,0,1-2,0V4H6V20H20a1,1,0,0,1,0,2Z"/><path className="cls-1" d="M7,7H3A1,1,0,0,1,3,5H7A1,1,0,0,1,7,7Z"/><path className="cls-1" d="M7,11H3A1,1,0,0,1,3,9H7a1,1,0,0,1,0,2Z"/><path className="cls-1" d="M7,15H3a1,1,0,0,1,0-2H7a1,1,0,0,1,0,2Z"/><path className="cls-1" d="M7,19H3a1,1,0,0,1,0-2H7a1,1,0,0,1,0,2Z"/><path className="cls-1" d="M15,11H11a1,1,0,0,1,0-2h4a1,1,0,0,1,0,2Z"/><path className="cls-1" d="M15,15H11a1,1,0,0,1,0-2h4a1,1,0,0,1,0,2Z"/></svg>
         </CardDataStats>
       </div>
-
+      <h1>Вы в состоянии {statist}</h1>
       <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
         <ChartOne />
         <ChartTwo />

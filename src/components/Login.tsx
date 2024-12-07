@@ -2,7 +2,11 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { AuthActions } from "@/app/auth/utils";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { IAuthState, authSlice } from "@/store/authSlice"
+
+
+import { useAppDispatch, useAppSelector } from "@/store/store";
+
 
 type FormData = {
   username: string;
@@ -20,18 +24,19 @@ const Login = () => {
   const router = useRouter();
 
   const { login, storeToken } = AuthActions();
-
+  const dispatch = useAppDispatch()
+  const state_auth = useAppSelector(state => state.auth)
   const onSubmit = (data: FormData) => {
-    console.log(data);
     login(data.username, data.password)
       .json((json) => {
         storeToken(json.access, "access");
         storeToken(json.refresh, "refresh");
-
-        router.push("/");
+        dispatch(authSlice.actions.setAuthState(true))
         
+        router.push("/");
       })
       .catch((err) => {
+        console.log(err);
         setError("root", { type: "manual", message: err.json.detail });
       });
   };

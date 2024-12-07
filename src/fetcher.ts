@@ -6,7 +6,7 @@ const { handleJWTRefresh, storeToken, getToken } = AuthActions();
 
 const api = () => {
   return (
-    wretch("http://"+ BACKEND_HOST +":8000")
+    wretch("http://"+ BACKEND_HOST +":8000").accept("application/json")
       // Initialize authentication with the access token.
       .auth(`Bearer ${getToken("access")}`)
       // Catch 401 errors to refresh the token and retry the request.
@@ -35,6 +35,12 @@ const api = () => {
   );
 };
 
-export const fetcher = (url: string): Promise<any> => {
-  return api().get(url).json();
+export const fetcher = async (url: string): Promise<any> => {
+  try{
+    return await api().get(url).json();
+  } catch(error: any|unknown){
+    console.log(error)
+    return error
+  }
+  
 };

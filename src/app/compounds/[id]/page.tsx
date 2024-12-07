@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 
-async function CompoundsPage({ params }: { params: { id: string } }) {
+async function CompoundsPage({ params }: { params: { id: number } }) {
   const { id } = params;
   
   return (

@@ -15,7 +15,6 @@ const ProjectPage = () => {
       <Breadcrumb pageName="Страница соединения" />
 
       <div className="flex flex-col gap-10">
-        <CompoundCard />
       </div>
     </DefaultLayout>
   );

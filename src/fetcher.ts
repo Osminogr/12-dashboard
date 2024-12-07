@@ -4,7 +4,7 @@ import { BACKEND_HOST } from "./envConfig";
 // Extract necessary functions from the AuthActions utility.
 const { handleJWTRefresh, storeToken, getToken } = AuthActions();
 
-const api = () => {
+export const api = () => {
   return (
     wretch("http://"+ BACKEND_HOST +":8000").accept("application/json")
       // Initialize authentication with the access token.
@@ -40,6 +40,7 @@ export const fetcher = async (url: string): Promise<any> => {
     return await api().get(url).json();
   } catch(error: any|unknown){
     console.log(error)
+    console.log(url)
     return error
   }
   

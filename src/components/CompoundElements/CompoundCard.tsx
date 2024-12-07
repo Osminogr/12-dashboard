@@ -37,7 +37,6 @@ const CompoundCard: React.FC<Props> =  (props) => {
     } catch(err) {
         console.log(err)
     }
-    console.log(endpoint)
     const { data, error, isLoading } = useSWR(endpoint, fetcher, { refreshInterval: 5000 })
     const res: COMPOUND_DATA = data
     if (!isLoading) {

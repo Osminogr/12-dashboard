@@ -1,20 +1,21 @@
-import { configureStore } from "@reduxjs/toolkit";
-import {
-  applyMiddleware, combineReducers, compose,
-} from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch, TypedUseSelectorHook, useSelector } from "react-redux";
 import { authReducer } from "../store/authSlice";
 import { compoundReducer } from "../store/compoundSlice";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 
+const persistConfig = {
+  key: "root",
+  storage: storage,
+  whitelist: ["auth"],
+};
 
+const persistedReducer = persistReducer(persistConfig, combineReducers({auth: authReducer, compound: compoundReducer}));
 
 export const store = configureStore({
-  reducer: { 
-    auth: authReducer,
-    compound: compoundReducer,
-   },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });

@@ -7,6 +7,9 @@ import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import { Provider } from "react-redux";
 import {store} from "@/store/store"
+import {useAppSelector} from "@/store/store";
+import { NextResponse } from "next/server";
+
 
 export default function RootLayout({
   children,
@@ -15,16 +18,12 @@ export default function RootLayout({
 }>) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
-
-  // const pathname = usePathname();
-
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
   }, []);
-
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} >
         <div className="dark:bg-boxdark-2 dark:text-bodydark">
           <Provider store={store}>
             {loading ? <Loader /> : children}

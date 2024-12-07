@@ -1,39 +1,37 @@
+'use client'
 import { COMPOUND_PREWIEW } from "@/types/compound_prewiew";
 import Image from "next/image";
 import Link from "next/link";
+import {fetcher} from "@/fetcher"
+import useSWR from "swr";
 
-
+const endpoint = "/api/chemdata/compounds"
 
 type CompoundRow = {
   id: number;
   preview?: string;
   name: string;
-  experiments: number;
-  calculations: number;
-  articles: number;
+  smiles: string
 }
 
-const compoundData: CompoundRow[] = [
+let compoundData: CompoundRow[] = [
   {
     id:1,
-    preview: "/images/preview/hexane.png",
     name: "Hexane",
-    experiments: 5,
-    calculations: 590,
-    articles: 6,
+    smiles:"cccccc"
   },
 ];
 
 
 
-interface QueryData {
-  data: CompoundRow[];
-}
 
+const TableCompoundsList = () => {
+  const { data, error, isLoading } = useSWR(endpoint, fetcher, { refreshInterval: 5000 })
 
-
-const TableCompoundsList = async () => {
-
+  let res: CompoundRow[] = data
+  if (!isLoading) {
+    compoundData = res
+  }
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pb-2.5 pt-6 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1 height:100%">
@@ -91,15 +89,15 @@ const TableCompoundsList = async () => {
 
 
             <div className="flex items-center justify-center p-2.5 xl:p-5">
-              <p className="text-meta-3">{compound.experiments}</p>
+              <p className="text-meta-3">0</p>
             </div>
 
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-black dark:text-white">{compound.calculations}</p>
+              <p className="text-black dark:text-white">0</p>
             </div>
 
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <p className="text-meta-5">{compound.articles}</p>
+              <p className="text-meta-5">0</p>
             </div>
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
               <Link href={"compounds/" + compound.id} className="text-meta-5">Страница вещества</Link>

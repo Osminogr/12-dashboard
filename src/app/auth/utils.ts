@@ -4,8 +4,7 @@ import { BACKEND_HOST } from "@/envConfig";
 
 
 // Base API setup for making HTTP requests
-const api = wretch("http://"+ BACKEND_HOST +":8000").accept("application/json");
-console.log(process.env.BACKEND_HOST)
+export const api = wretch("http://"+ BACKEND_HOST +":8000").accept("application/json");
 const storeToken = (token: string, type: "access" | "refresh") => {
     Cookies.set(type + "Token", token);
   };

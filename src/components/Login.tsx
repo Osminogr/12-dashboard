@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { AuthActions } from "@/app/auth/utils";
 import { useRouter } from "next/navigation";
 import { IAuthState, authSlice } from "@/store/authSlice"
+import {fetcher} from "@/fetcher"
+import Cookies from "js-cookie";
 
 
 import { useAppDispatch, useAppSelector } from "@/store/store";
@@ -29,15 +31,18 @@ const Login = () => {
   const onSubmit = (data: FormData) => {
     login(data.username, data.password)
       .json((json) => {
+        console.log(json);
         storeToken(json.access, "access");
         storeToken(json.refresh, "refresh");
         dispatch(authSlice.actions.setAuthState(true))
-        
+        fetcher("/auth/users/me/").then((data)  => {
+          dispatch(authSlice.actions.setUserID(data.id))
+        })
         router.push("/");
       })
       .catch((err) => {
         console.log(err);
-        setError("root", { type: "manual", message: err.json.detail });
+        setError("root", { type: "manual", message: err.json });
       });
   };
   return (

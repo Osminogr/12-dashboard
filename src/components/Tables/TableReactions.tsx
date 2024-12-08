@@ -1,36 +1,66 @@
 'use client'
-import { COMPOUND_PREWIEW } from "@/types/compound_prewiew";
 import Image from "next/image";
 import Link from "next/link";
 import {fetcher} from "@/fetcher"
 import useSWR from "swr";
+import type { CompoundRow } from "./TableCompounds";
 
-const endpoint = "/api/chemdata/compounds"
 
-export type CompoundRow = {
+const endpoint = "/api/chemdata/reactions"
+
+
+export type ReactionRow = {
   id: number;
-  preview?: string;
-  name: string;
-  smiles: string
+  conditions: {id:number, literlal:string, value:number, unit:string}[];
+  reactants: CompoundRow[];
+  products: CompoundRow[];
+
 }
 
-let compoundData: CompoundRow[] = [
+let reactionData: ReactionRow[] = [
   {
-    id:1,
-    name: "Hexane",
-    smiles:"cccccc"
-  },
+    "id": 1,
+    "conditions": [
+        {
+            "id": 1,
+            "literlal": "н.у.",
+            "value": 273.15,
+            "unit": "К"
+        }
+    ],
+    "reactants": [
+        {
+            "id": 4,
+            "name": "Water",
+            "smiles": "O"
+        },
+        {
+            "id": 10,
+            "name": "SO2",
+            "smiles": "OSO"
+        }
+    ],
+    "products": [
+        {
+            "id": 11,
+            "name": "H2SO3",
+            "smiles": "OS(=O)O"
+        }
+    ]
+}
 ];
 
+const joinCompoundNames =(arr: {id:number, name:string, smiles:string}[]) => arr.map(item => item.name).join(' + ')
 
 
 
-const TableCompoundsList = () => {
+
+const TableReactionsList = () => {
   const { data, error, isLoading } = useSWR(endpoint, fetcher, { refreshInterval: 5000 })
 
-  let res: CompoundRow[] = data
+  let res: ReactionRow[] = data
   if (!isLoading) {
-    compoundData = res
+    reactionData = res
   }
 
   return (
@@ -43,7 +73,7 @@ const TableCompoundsList = () => {
         <div className="grid grid-cols-3 rounded-sm bg-gray-2 dark:bg-meta-4 sm:grid-cols-6">
           <div className="p-2.5 xl:p-5">
             <h5 className="text-sm font-medium uppercase xsm:text-base">
-              Вещество
+              Реакция
             </h5>
           </div>
           <div className="p-2.5 text-center xl:p-5">
@@ -68,10 +98,10 @@ const TableCompoundsList = () => {
           </div>
         </div>
 
-        {compoundData.map((compound, key) => (
+        {reactionData.map((reaction, key) => (
           <div
             className={`grid grid-cols-3 sm:grid-cols-6 ${
-              key === compoundData.length - 1
+              key === reactionData.length - 1
                 ? ""
                 : "border-b border-stroke dark:border-strokedark"
             }`}
@@ -80,10 +110,11 @@ const TableCompoundsList = () => {
             <div className="flex items-center gap-3 p-2.5 xl:p-5">
             
               <div className="flex-shrink-0">
-                {/* <Image alt="compound" width={48} height={48} /> */}
+                {/* <Image alt="reaction" width={48} height={48} /> */}
               </div>
               <p className="hidden text-black dark:text-white sm:block">
-                {compound.name}
+                {joinCompoundNames(reaction.reactants)} → ({reaction.conditions.map(item => `${item.literlal}`).join(', ')}
+) → {joinCompoundNames(reaction.products)}
               </p>
             </div>
 
@@ -100,7 +131,7 @@ const TableCompoundsList = () => {
               <p className="text-meta-5">0</p>
             </div>
             <div className="hidden items-center justify-center p-2.5 sm:flex xl:p-5">
-              <Link href={"compounds/" + compound.id} className="text-meta-5">Страница вещества</Link>
+              <Link href={"reactions/" + reaction.id} className="text-meta-5">Страница вещества</Link>
             </div>
             
 
@@ -111,4 +142,4 @@ const TableCompoundsList = () => {
   );
 };
 
-export default TableCompoundsList;
+export default TableReactionsList;

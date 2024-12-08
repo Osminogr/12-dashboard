@@ -4,17 +4,16 @@ import Image from "next/image";
 import ClickOutside from "@/components/ClickOutside";
 import {useRouter} from "next/navigation";
 import {useAppDispatch, useAppSelector} from "@/store/store";
-import {authSlice} from "@/store/authSlice";
-import {fetcher} from "@/fetcher";
 import { me_data_info } from "@/components/Layouts/DefaultLayout";
-import { NextResponse } from "next/server";
+
+
 
 const DropdownUser = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
   const dispatch = useAppDispatch();
   let user_data: me_data_info =  useAppSelector(state => state.auth.user_data)
-  
+
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
